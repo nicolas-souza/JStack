@@ -24,3 +24,4 @@ router.put('/categories/:id', CategoryController.update);
 router.delete('/categories/:id', CategoryController.delete);
 
 module.exports = router
+
