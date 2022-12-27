@@ -8,7 +8,8 @@ module.exports = {
     entry: path.resolve(__dirname, 'src', 'index.js'), //é o arquivo que chama o reactDOM.render
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: 'bundle[hash].js' //resolve o cache
+        filename: 'bundle[hash].js' ,//resolve o cache
+        publicPath: '/'
     },
     plugins: [
         new HtmlWebpackPlugin({
