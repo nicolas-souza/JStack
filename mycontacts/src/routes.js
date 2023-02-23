@@ -5,13 +5,7 @@ const ContactController = require('./app/controllers/ContactController')
 
 const router = Router();
 
-router.get('/contacts',
-    (request, response, next) => {
-        next(); //prossegue a leitura de middleware
-    },
-    ContactController.index
-);
-
+router.get('/contacts',ContactController.index);
 router.get('/contacts/:id', ContactController.show);
 router.delete('/contacts/:id', ContactController.delete);
 router.post('/contacts/', ContactController.store);
