@@ -31,7 +31,7 @@ class ContactsRepository{
             SELECT contacts.*, categories.name AS category_name
             FROM contacts
             LEFT JOIN categories ON categories.id = contacts.category_id
-            WHERE contacts.id = $1
+            WHERE contacts.email = $1
             `, [email]);
 
         return row;
@@ -39,7 +39,7 @@ class ContactsRepository{
 
     async create({name, email, phone, category_id}){
         const [row] = await db.query(`
-                INSERT INTO contacts(name, email, phone, category_id)
+                INSERT INTO contacts (name, email, phone, category_id)
                 VALUES($1, $2, $3, $4)
                 RETURNING *
                 `, [name, email, phone, category_id]);

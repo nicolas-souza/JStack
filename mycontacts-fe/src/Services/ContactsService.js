@@ -1,3 +1,4 @@
+import ContactMapper from './mappers/ContactMapper';
 import HttpClient from './utils/HttpClient';
 
 class ContactsService {
@@ -6,11 +7,32 @@ class ContactsService {
   }
 
   async listContacts(orderBy = 'asc') {
-    return this.httpClient.get(`/contacts?orderBy=${orderBy}`);
+    const contacts = await this.httpClient.get(`/contacts?orderBy=${orderBy}`, {
+      headers: {
+        Authorization: 'meutoken',
+      },
+    });
+    return contacts.map(ContactMapper.toDomain); // executa para cada elemento
   }
 
-  async createContact(contact) {
-    return this.httpClient.post('/contacts', contact);
+  async getContactById(id) {
+    const contact = await this.httpClient.get(`/contacts/${id}`);
+
+    return ContactMapper.toDomain(contact);
+  }
+
+  createContact(contact) {
+    const body = ContactMapper.toPersistence(contact);
+    return this.httpClient.post('/contacts', { body });
+  }
+
+  updateContact(id, contact) {
+    const body = ContactMapper.toPersistence(contact);
+    return this.httpClient.put(`/contacts/${id}`, { body });
+  }
+
+  deleteContact(id) {
+    return this.httpClient.delete(`/contacts/${id}`);
   }
 }
 

@@ -30,7 +30,8 @@
         "react-hooks/exhaustive-deps": "warn",
         "class-methods-use-this": "off",
         "no-console":"off",
-        "no-empty": ["error", {"allowEmptyCatch": true}]
+        "no-empty": ["error", {"allowEmptyCatch": true}],
+        "object-curly-newline":"off"
 
 
     }

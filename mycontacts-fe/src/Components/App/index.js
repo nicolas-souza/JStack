@@ -6,6 +6,7 @@ import GlobalStyles from '../../assets/styles/global';
 import defaultTheme from '../../assets/styles/themes/default';
 
 import { Container } from './styles';
+import ToastContainer from '../Toast/ToastContainer';
 
 import Header from '../Header';
 import Routes from '../../Routes';
@@ -15,6 +16,7 @@ function App() {
     <BrowserRouter>
       <ThemeProvider theme={defaultTheme}>
         <GlobalStyles />
+        <ToastContainer />
         <Container>
           <Header />
           <Routes />

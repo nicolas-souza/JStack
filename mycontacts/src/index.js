@@ -14,5 +14,5 @@ app.use(cors);
 app.use(routes);
 app.use(errorHandler);
 
-app.listen(3001, () => console.log('🔥 Server started 🔥'));
+app.listen(3001, () => console.log(`🔥 Server started 🔥`));
 
