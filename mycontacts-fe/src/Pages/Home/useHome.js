@@ -20,17 +20,19 @@ export default function useHome() {
     contact.name.toLowerCase().includes(searchTerm.toLowerCase())
   )), [contacts, searchTerm]);
 
+  // console.log(filteredContacts);
+
   const loadContacts = useCallback(async () => {
     try {
       setIsLoading(true);
 
       const contactsList = await ContactsService.listContacts(orderBy);
-      // const contactsList = []; await ContactsService.listContacts(orderBy);
 
       setContacts(contactsList);
       setHasError(false);
     } catch (error) {
       setHasError(true);
+      setContacts([]);
     } finally {
       setIsLoading(false);
     }
@@ -60,7 +62,6 @@ export default function useHome() {
   }
   function handleCloseDeleteModal() {
     setIsDeleteModalVisible(false);
-    setContactBeingDelete(null);
   }
   async function handleConfirmDelete() {
     try {
